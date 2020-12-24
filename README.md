@@ -38,4 +38,5 @@ node createTestFile.js
 # Assumptions
 1. Alice === alice
 2. Special characters inside word: `sas!?ha` breaking word to 2 without lexical check: `sas ha`
-3. Englist support only for sanitization
+3. Only englist support for sanitization
+4. Eventually consistence results
