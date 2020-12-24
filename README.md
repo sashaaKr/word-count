@@ -40,3 +40,4 @@ node createTestFile.js
 2. Special characters inside word: `sas!?ha` breaking word to 2 without lexical check: `sas ha`
 3. Only englist support for sanitization
 4. Eventually consistence results
+5. All files should be allocated in `fileSystem` folder.
