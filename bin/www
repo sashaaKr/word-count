@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+const {
+  PORT = 8080,
+} = process.env;
+
+let server;
+
+function shutdown(err) {
+  console.log('Start graceful shutdown', err);
+  server.close(function onServerClosed (err) {
+    if (err) {
+      console.error(err);
+      process.exitCode = 1;
+    }
+    console.log('Graceful completed shutdown');
+    process.exit();
+  });
+}
+
+async function run() {
+  const app = await require('../index')();
+
+  server = app.listen(PORT, function () {
+    console.log(`Webserver is ready and listening on port ${PORT}`);
+  });
+}
+
+process.on('SIGINT', function onSigint () {
+	console.info('Got SIGINT. Graceful shutdown ', new Date().toISOString());
+  shutdown();
+});
+
+process.on('SIGTERM', function onSigterm () {
+  console.info('Got SIGTERM. Graceful shutdown ', new Date().toISOString());
+  shutdown();
+})
+
+run().catch(shutdown);

@@ -1,0 +1,51 @@
+{
+  "name": "lemonade-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test nyc mocha --exit --recursive",
+    "test:watch": "NODE_ENV=test mocha --watch --recursive",
+    "lint": "eslint '**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "zooblin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "bluebird": "^3.7.2",
+    "chai": "^4.2.0",
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.4",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "prettier": "1.18.2",
+    "pretty-quick": "^1.11.1",
+    "supertest": "^6.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint"
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "celebrate": "^13.0.4",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "nodemon": "^2.0.6",
+    "ramda": "^0.27.1",
+    "request": "^2.88.2",
+    "split": "^1.0.1",
+    "uuid": "^8.3.2"
+  }
+}

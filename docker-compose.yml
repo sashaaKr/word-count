@@ -1,0 +1,44 @@
+version: '2.4'
+
+services:
+
+  node:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    command: ../node_modules/.bin/nodemon --inspect=0.0.0.0:9229 ./bin/www
+    ports:
+      - "80:3000"
+      - "9229:9229"
+      - "9230:9230"
+    volumes:
+      - .:/opt/node_app/app:delegated
+      - ./package.json:/opt/node_app/package.json
+      - ./package-lock.json:/opt/node_app/package-lock.json
+      - notused:/opt/node_app/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_HOSTNAME=mongo
+      - MONGO_PORT=27017
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      disable: true
+
+  mongo:
+    image: mongo:4
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=example-database
+    healthcheck:
+      test: "[ `echo 'db.runCommand(\"ping\").ok' | mongo localhost/example-database --quiet` ] && echo 0 || echo 1"
+      interval: 5s
+      start_period: 10s
+      timeout: 4s
+      retries: 3
+
+volumes:
+  notused:
