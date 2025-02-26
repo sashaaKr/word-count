@@ -14,7 +14,7 @@ module.exports = {
   },
   git: {
     requireUpstream: false,
-    commit: !isPreRelease,
+    commit: true,
     commitMessage: "chore(release): bump version to ${version} [skip ci]",
     requireCommits: false,
     requireCommitsFail: false,
