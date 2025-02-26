@@ -14,9 +14,6 @@
   },
   "author": "zooblin@gmail.com",
   "license": "ISC",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "",
   "devDependencies": {
     "bluebird": "^3.7.2",
